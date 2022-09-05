@@ -1,0 +1,49 @@
+
+.BudgetMainContainer{
+    width: 80%; 
+    padding: 20px; 
+}
+
+@media(min-width: 720px){
+    .BudgetMainContainer{
+        max-width: 700px; 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+        border-radius: 8px; 
+        padding: 50px 40px; 
+        box-shadow: 1px 1px 5px -1px black; 
+    }
+}
+
+.graphTest{
+    width: 150px; 
+    height: 150px;
+    background-color: blue; 
+    border-radius: 50%; 
+}
+
+.BudgetMainText{
+    font-weight: 700; 
+    color: #012E67; 
+    font-size: 20px; 
+}
+
+.BudgetMainTextValue{
+    color: black; 
+    font-weight: normal; 
+}
+
+.BudgetMainButton{
+    width: 100%; 
+    padding: 15px; 
+    border: none; 
+    background-color: var(--red-button); 
+    color: white; 
+    text-transform: uppercase; 
+    font-weight: 700;
+}
+
+.BudgetMainButton:hover{
+    background-color: var(--red-button-hover); 
+}

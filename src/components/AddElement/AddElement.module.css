@@ -1,0 +1,14 @@
+
+.AddElementButton{
+    position: fixed; 
+    right: 20px;
+    bottom: 20px;  
+    border: none; 
+    font-size: 50px; 
+    color: var(--blue-button); 
+    background-color: transparent; 
+}
+
+.AddElementButton:hover{
+    color: var(--blue-button-hover); 
+}

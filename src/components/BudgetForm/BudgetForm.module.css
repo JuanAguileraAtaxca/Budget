@@ -1,0 +1,53 @@
+:root{
+    --color-button: #8E44AD; 
+    --color-hover: #A569BD; 
+}
+
+@media(min-width: 720px){
+    .BudgetFormContainer{
+        max-width: 500px; 
+        padding: 70px 60px; 
+        border-radius: 8px; 
+        box-shadow: 1px 1px 5px -1px black; 
+    }
+}
+
+.BudgetLabel{
+    font-size: 18px; 
+    text-align: center; 
+    margin-bottom: 30px; 
+}
+
+.BudgetFormContainer{
+    display: flex; 
+    flex-direction: column; 
+    width: 80%; 
+}
+
+.BudgetFormInput{
+    width: 100%; 
+    padding: 15px;
+    margin-bottom: 15px; 
+    border-radius: 10px; 
+    border: none; 
+    background-color: var(--gris-focus); 
+    outline: none; 
+}
+
+.BudgetFormInput:focus{
+    background-color: var(--gris-input);
+}
+
+.BudgetFormSubmit{
+    padding: 9px;
+    border-radius: 10px; 
+    border: none; 
+    background-color: var(--color-button);  
+    color: white; 
+    font-weight: 700;
+    text-transform: uppercase; 
+}
+
+.BudgetFormSubmit:hover{
+    background-color: var(--color-hover);
+}

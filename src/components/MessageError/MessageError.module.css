@@ -1,0 +1,14 @@
+
+
+.MessageErrorContainer{
+    background-color: var(--message-error); 
+    border-radius: 10px; 
+    margin-bottom: 15px; 
+}
+
+.MessageErrorText{
+    font-size: 15px; 
+    color: white; 
+    text-align: center; 
+    margin: 15px 0; 
+}

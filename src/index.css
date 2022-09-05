@@ -1,0 +1,38 @@
+:root{
+    --morado-header: #7D3C98; 
+    --gris-input: #EBEBEB; 
+    --gris-focus: #F8F8F8; 
+    --message-error: #DA1818; 
+    --red-button: #CC0000; 
+    --red-button-hover: #FF0800; 
+    --blue-button: #0249CB;
+    --blue-button-hover: #0A5AEE;  
+} 
+
+*{
+    box-sizing: border-box; 
+}
+
+html{
+    font-size: 62.5%; 
+}
+
+body{
+    padding: 0; 
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px; 
+}
+
+.m-c{
+    margin: auto; 
+}
+
+.mt-100{
+    margin-top: 100px; 
+}
+
+.center{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}

@@ -1,0 +1,77 @@
+
+.Modal{
+    position: fixed; 
+    background-color: rgb(0,0,0,0.4);
+    top: 0; 
+    bottom: 0; 
+    right: 0;
+    left: 0;
+    transition: 2s all linear;
+    z-index: 2000; 
+}
+
+.ModalForm{
+    width: 80%; 
+    padding: 30px 30px;
+    background-color: white;
+    border-radius: 10px; 
+}
+
+.ModalTitle{
+    text-transform: uppercase; 
+    text-align: center; 
+    border-bottom: 2px solid black; 
+    font-size: 20px; 
+}
+
+@media(min-width: 720px){
+    .ModalForm{
+        max-width: 700px; 
+    }
+
+    .ModalTitle{
+        font-size: 24px; 
+    }
+}
+
+.ModalExit{
+    padding: 0; 
+    position: absolute; 
+    right: 40px; 
+    top: 50px; 
+    background-color: white;
+    border-radius: 50%; 
+    border: none; 
+    font-size: 40px; 
+    color: var(--red-button); 
+}
+
+.ModalExit:hover{
+    color: var(--red-button-hover)
+}
+
+input[type="text"], select{
+    width: 100%; 
+    padding: 15px; 
+    margin-bottom: 15px; 
+    margin-top: 10px; 
+    outline: none;
+    background-color: var(--gris-input);
+    border: none; 
+    border-radius: 10px; 
+}
+
+.ModalAdd{
+    margin-top: 20px; 
+    padding: 15px; 
+    width: 100%; 
+    background-color: var(--blue-button); 
+    border: none; 
+    color: white; 
+    font-weight: 700; 
+    font-size: 17px; 
+}
+
+.ModalAdd:hover{
+    background-color: var(--blue-button-hover); 
+}
