@@ -20,7 +20,7 @@ const BudgetForm = ({setBudget}) => {
         <form className={style.BudgetFormContainer + " m-c mt-100"} onSubmit={hadleSubmit}>
             {(validation && value < 0)  && <MessageError message="Invalid value!"/> }
             <label className={style.BudgetLabel}> Insert your budget </label>
-            <input className={style.BudgetFormInput} onChange={(e) => setValue(Number(e.target.value))} value={value} type="number" placeholder="insert your budget"/>
+            <input className={style.BudgetFormInput} value={value} onChange={(e) => setValue(Number(e.target.value))} type="number" placeholder="insert your budget"/>
             <input className={style.BudgetFormSubmit} type="submit" value="accept" /> 
         </form>
     );

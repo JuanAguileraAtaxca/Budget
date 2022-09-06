@@ -17,6 +17,10 @@
     border-radius: 10px; 
 }
 
+.ModalForm label{
+    font-weight: 700;
+}
+
 .ModalTitle{
     text-transform: uppercase; 
     text-align: center; 
@@ -50,7 +54,7 @@
     color: var(--red-button-hover)
 }
 
-input[type="text"], select{
+input[type="text"], input[type="number"], select{
     width: 100%; 
     padding: 15px; 
     margin-bottom: 15px; 
@@ -59,6 +63,10 @@ input[type="text"], select{
     background-color: var(--gris-input);
     border: none; 
     border-radius: 10px; 
+}
+
+select{
+    text-align: center;
 }
 
 .ModalAdd{

@@ -6,6 +6,7 @@ import {useState} from 'react';
 const BudgetMain = ({budget, setBudget}) => {
 
     const [modal, setModal] = useState(false); 
+    const [items, setItems] = useState([]); 
 
     const format = (value) => {
         return value.toLocaleString('en-US', {
@@ -16,7 +17,7 @@ const BudgetMain = ({budget, setBudget}) => {
 
     return(
         <>
-            {modal && <Modal modal={modal} setModal={setModal}/> }
+            {modal && <Modal items={items} setItems={setItems} modal={modal} setModal={setModal}/> }
             <div className={style.BudgetMainContainer + " m-c mt-100"}>
                 <div className='center'>
                     <div className={style.graphTest}></div>
@@ -31,6 +32,13 @@ const BudgetMain = ({budget, setBudget}) => {
                 </div>
                 
             </div>
+            <div>
+                <ul>
+                    {items.map(item => <li> {item.name} </li>)}
+                </ul>
+                
+            </div>
+
             <AddElement modal={modal} setModal={setModal}/>
         </>
         
