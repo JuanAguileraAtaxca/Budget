@@ -33,10 +33,15 @@ const BudgetMain = ({budget, setBudget}) => {
                 </div>
                 
             </div>
-            <div>
-                <ul>
-                    {items.map(item => <li key={item.id}> {item.name}  </li>)}
-                </ul>
+            <div className={style.BudgetMainContainer}>
+                {items.length > 0? 
+                    <ul>
+                        {items.map(item => <li key={item.id}> {item.name}  </li>)}
+                    </ul>
+                : 
+                    <h2> there's not items</h2>
+                }
+                
                 
             </div>
 
