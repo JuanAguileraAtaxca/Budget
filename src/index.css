@@ -7,6 +7,7 @@
     --red-button-hover: #FF0800; 
     --blue-button: #0249CB;
     --blue-button-hover: #0A5AEE;  
+    --width: 700px; 
 } 
 
 *{
@@ -31,8 +32,20 @@ body{
     margin-top: 100px; 
 }
 
+.mt-20{
+    margin-top: 20px; 
+}
+
+.mb-20{
+    margin-bottom: 20px; 
+}
+
 .center{
     display: flex; 
     justify-content: center; 
     align-items: center; 
+}
+
+.shadow{
+    box-shadow: 1px 1px 5px -1px black; 
 }

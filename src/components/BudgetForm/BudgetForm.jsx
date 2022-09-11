@@ -10,6 +10,10 @@ const BudgetForm = ({setBudget}) => {
         e.preventDefault();
         if(value < 0){
             setValidation(true); 
+
+            setTimeout(() => { 
+                setValidation(false); 
+            }, 3000);
             return; 
         }
         setValidation(false);

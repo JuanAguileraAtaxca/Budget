@@ -1,7 +1,9 @@
-import style from './BudgetMain.module.css'; 
+import {useState} from 'react'; 
 import AddElement from '../AddElement/AddElement';
 import Modal from '../Modal/Modal'; 
-import {useState} from 'react'; 
+import Item from '../Item/Item';
+import {format} from '../helpers'; 
+import style from './BudgetMain.module.css'; 
 
 const BudgetMain = ({budget, setBudget}) => {
 
@@ -9,17 +11,12 @@ const BudgetMain = ({budget, setBudget}) => {
     const [available, setAvailable] = useState(budget); 
     const [items, setItems] = useState([]); 
 
-    const format = (value) => {
-        return value.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        })
-    }
+    
 
     return(
         <>
             {modal && <Modal items={items} setItems={setItems} modal={modal} setModal={setModal} setAvailable={setAvailable} available={available}/> }
-            <div className={style.BudgetMainContainer + " m-c mt-100"}>
+            <div className={style.BudgetMainContainer + " m-c mt-100 shadow"}>
                 <div className='center'>
                     <div className={style.graphTest}></div>
                 </div>
@@ -33,13 +30,17 @@ const BudgetMain = ({budget, setBudget}) => {
                 </div>
                 
             </div>
-            <div className={style.BudgetMainContainer}>
-                {items.length > 0? 
-                    <ul>
-                        {items.map(item => <li key={item.id}> {item.name}  </li>)}
-                    </ul>
+            <div className={style.BudgetCardContainer + " m-c mt-20 mb-20"}>
+                {items.length > 0 ? 
+                    <>
+                        <h2 className={style.BudgetEmpty}> Expenses </h2>
+                        <ul className={style.BudgetMainUl}>
+                            {items.map(item => <Item key={item.id} property={item}/>)}
+                        </ul>
+                    </>
+                    
                 : 
-                    <h2> there's not items</h2>
+                    <h2 className={style.BudgetEmpty}> there's not items</h2>
                 }
                 
                 

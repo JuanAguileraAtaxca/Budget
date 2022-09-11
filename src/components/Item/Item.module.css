@@ -1,0 +1,45 @@
+
+.ItemCard{
+    width: 80%; 
+    padding: 20px; 
+    border-radius: 9px; 
+    display: flex; 
+    justify-content: space-between; 
+}
+
+@media(min-width: 720px){
+    .ItemCard{
+        max-width: var(--width); 
+    }
+}
+
+.ItemCardSub{
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    text-align: center; 
+}
+
+@media(min-width: 650px){
+    .ItemCardSub{
+        flex-direction: row; 
+        gap: 20px; 
+    }
+}
+
+.ItemCardCategory{
+    font-weight: 700;
+    font-size: 20px; 
+    margin: 15px 0; 
+}
+
+.ItemCardName{
+    font-size: 18px; 
+    font-weight: 700;
+    color: rgb(0,0,0,0.7); 
+}
+
+.ItemCardPrice{
+    font-size: 22px; 
+    font-weight: 700; 
+}

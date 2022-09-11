@@ -16,6 +16,10 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available}) => {
 
         if([item, price, category].includes('') || price <= 0){
             setValidation(true);
+
+            setTimeout(() => {
+                setValidation(false);
+            }, 3000);
             return; 
         }
 
@@ -32,21 +36,22 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available}) => {
     
             setItems([...items, newItem]);  
             setValidation(false); 
-            console.log(newItem); 
+            console.log(newItem);
     
             setItem('');
             setPrice(0); 
             setCategory(""); 
+
+            setTimeout(() => {
+                setModal(false);
+            }, 1000);
         }
-
-        
-
     }
 
     const generateDate = () => {
         const date = new Date(); 
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let formatDate = "/" + month[date.getMonth() + 1] + "/" + date.getFullYear(); 
+        let formatDate = " de " + month[date.getMonth() + 1] + " de " + date.getFullYear(); 
 
         if(date.getDate() < 10){
             return "0" + date.getDate() + formatDate;
@@ -90,6 +95,9 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available}) => {
                         <option value="Education"> Education </option> 
                         <option value="Health"> Health </option> 
                         <option value="Entertainment"> Entertainment </option>
+                        <option value="Outfit"> Outfit </option>
+                        <option value="Subscriptions"> Subscriptions </option>
+                        <option value="Others"> Others </option>
                     </select>
                 </div>
                 
