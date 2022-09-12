@@ -10,12 +10,20 @@ const BudgetMain = ({budget, setBudget}) => {
     const [modal, setModal] = useState(false);
     const [available, setAvailable] = useState(budget); 
     const [items, setItems] = useState([]); 
-
-    
+    const [itemEdit, setItemEdit] = useState({}); 
 
     return(
         <>
-            {modal && <Modal items={items} setItems={setItems} modal={modal} setModal={setModal} setAvailable={setAvailable} available={available}/> }
+            {modal && <Modal 
+                            items={items} 
+                            setItems={setItems} 
+                            modal={modal} 
+                            setModal={setModal} 
+                            setAvailable={setAvailable} 
+                            available={available}
+                            itemEdit={itemEdit}
+                        /> 
+            }
             <div className={style.BudgetMainContainer + " m-c mt-100 shadow"}>
                 <div className='center'>
                     <div className={style.graphTest}></div>
@@ -30,13 +38,26 @@ const BudgetMain = ({budget, setBudget}) => {
                 </div>
                 
             </div>
-            <div className={style.BudgetCardContainer + " m-c mt-20 mb-20"}>
+            <div className="m-c mt-20 mb-20">
                 {items.length > 0 ? 
                     <>
                         <h2 className={style.BudgetEmpty}> Expenses </h2>
-                        <ul className={style.BudgetMainUl}>
-                            {items.map(item => <Item key={item.id} property={item}/>)}
-                        </ul>
+                        <div className={style.BudgetContainerCards + " m-c"}>
+                            {items.map(item => 
+                                            <Item 
+                                                items={items} 
+                                                setItems={setItems} 
+                                                modal={modal} 
+                                                setModal={setModal} 
+                                                key={item.id} 
+                                                property={item}
+                                                available={available}
+                                                setAvailable={setAvailable}
+                                                setItemEdit={setItemEdit}
+                                            />
+                                        )
+                            }
+                        </div>                        
                     </>
                     
                 : 

@@ -15,9 +15,14 @@
     }
 }
 
-.BudgetMainUl{
-    list-style: none; 
-    padding: 0; 
+.BudgetContainerCards{
+    width: 80%; 
+}
+
+@media(min-width: 600px){
+    .BudgetContainerCards{
+        max-width: 700px;
+    }
 }
 
 .BudgetEmpty{

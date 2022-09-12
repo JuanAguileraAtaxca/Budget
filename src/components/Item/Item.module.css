@@ -1,6 +1,6 @@
 
 .ItemCard{
-    width: 80%; 
+    width: 100%;
     padding: 20px; 
     border-radius: 9px; 
     display: flex; 
@@ -15,7 +15,6 @@
 
 .ItemCardSub{
     display: flex; 
-    flex-direction: column; 
     gap: 10px; 
     text-align: center; 
 }
@@ -27,19 +26,58 @@
     }
 }
 
+.ItemCardImg{
+    width: 40px; 
+}
+
+@media(min-width: 600px){
+    .ItemCardImg{
+        width: 64px; 
+    }
+}
+
 .ItemCardCategory{
     font-weight: 700;
-    font-size: 20px; 
+    font-size: 15px; 
     margin: 15px 0; 
 }
 
+@media(min-width: 600px){
+    .ItemCardCategory{
+        font-size: 20px; 
+    }
+}
+
+
 .ItemCardName{
-    font-size: 18px; 
+    font-size: 13px; 
     font-weight: 700;
     color: rgb(0,0,0,0.7); 
 }
 
+@media(min-width: 600px){
+    .ItemCardName{
+        font-size: 18px; 
+    }
+}
+
+.ItemCardDate{
+    font-size: 11px; 
+}
+
+@media(min-width: 600px){
+    .ItemCardDate{
+        font-size: 16px; 
+    }
+}
+
 .ItemCardPrice{
-    font-size: 22px; 
-    font-weight: 700; 
+    font-size: 17px; 
+    font-weight:bolder; 
+}
+
+@media(min-width: 600px){
+    .ItemCardPrice{
+        font-size: 22px; 
+    }
 }

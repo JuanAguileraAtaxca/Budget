@@ -1,15 +1,22 @@
+import {useState, useEffect} from 'react';
+import MessageError from '../MessageError/MessageError'; 
 import style from './Modal.module.css'; 
 import { FaTimesCircle } from "react-icons/fa";
-import {useState} from 'react';
-import MessageError from '../MessageError/MessageError'; 
 
 
-const Modal = ({items, setItems, modal, setModal, setAvailable, available}) => {
+
+const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemEdit}) => {
 
     const [item, setItem] = useState(''); 
     const [price, setPrice] = useState(0);
     const [category, setCategory] = useState('');  
     const [validation, setValidation] = useState(false); 
+
+    useEffect(() => {
+        setItem(itemEdit.name); 
+        setPrice(itemEdit.priceItem); 
+        setCategory(itemEdit.categoryItem); 
+    }, [itemEdit]); 
 
     const hadleModal = (e) =>{
         e.preventDefault(); 
@@ -33,19 +40,15 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available}) => {
             }
     
             setAvailable(available - price); 
-    
             setItems([...items, newItem]);  
             setValidation(false); 
-            console.log(newItem);
-    
             setItem('');
             setPrice(0); 
             setCategory(""); 
-
-            setTimeout(() => {
-                setModal(false);
-            }, 1000);
-        }
+            setTimeout(() => { setModal(false); }, 1000);
+            return;
+        } 
+        
     }
 
     const generateDate = () => {
@@ -97,11 +100,12 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available}) => {
                         <option value="Entertainment"> Entertainment </option>
                         <option value="Outfit"> Outfit </option>
                         <option value="Subscriptions"> Subscriptions </option>
+                        <option value="Sport"> Sport </option>
                         <option value="Others"> Others </option>
                     </select>
                 </div>
                 
-                <input className={style.ModalAdd} type="submit" value="Add item" />
+                <input className={style.ModalAdd} type="submit" value={JSON.stringify(itemEdit) === '{}' ? "Add item" : "Edit item"} />
             </form>
         </div>
     ); 

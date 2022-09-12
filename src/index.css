@@ -49,3 +49,25 @@ body{
 .shadow{
     box-shadow: 1px 1px 5px -1px black; 
 }
+
+.swipe-action__leading{
+    background-color: var(--blue-button); 
+    color: white; 
+    font-weight: 700;
+    margin: 20px 0; 
+}
+
+.swipe-action__trailing{
+    background-color: var(--message-error); 
+    color: white; 
+    font-weight: 700; 
+    margin: 20px 0; 
+}
+
+.swipeable-list .swipe-action{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: right; 
+    font-size: 20px; 
+}
