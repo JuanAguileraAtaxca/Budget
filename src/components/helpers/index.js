@@ -5,3 +5,10 @@ export const format = (value) => {
         currency: 'USD'
     })
 }
+
+export const generateId = () => {
+    const firstPart = Date.now().toString().substring(3, 12);
+    const secondPart = Math.random().toString().substring(3, 12);
+
+    return firstPart + secondPart; 
+}

@@ -22,6 +22,7 @@ const BudgetMain = ({budget, setBudget}) => {
                             setAvailable={setAvailable} 
                             available={available}
                             itemEdit={itemEdit}
+                            setItemEdit = {setItemEdit}
                         /> 
             }
             <div className={style.BudgetMainContainer + " m-c mt-100 shadow"}>

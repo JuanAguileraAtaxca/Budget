@@ -1,11 +1,13 @@
 import {useState, useEffect} from 'react';
 import MessageError from '../MessageError/MessageError'; 
-import style from './Modal.module.css'; 
 import { FaTimesCircle } from "react-icons/fa";
+import {generateId} from '../helpers'; 
+import style from './Modal.module.css'; 
 
 
 
-const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemEdit}) => {
+
+const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemEdit, setItemEdit}) => {
 
     const [item, setItem] = useState(''); 
     const [price, setPrice] = useState(0);
@@ -26,29 +28,41 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
 
             setTimeout(() => {
                 setValidation(false);
-            }, 3000);
+            }, 2000);
             return; 
         }
 
         if(available >= price){
-            const newItem = {
-                id: generateId(),
+            let newItem = {
                 name: item,
                 priceItem: Number(price), 
                 categoryItem: category,
                 date: generateDate()
             }
+
+            if(JSON.stringify(itemEdit) === '{}'){
+                newItem.id = generateId(); 
+            } else {
+                const newItems = items.filter(i => i.id !== itemEdit.id); 
+                newItem.id = itemEdit.id; 
+                setItems([...newItems]); 
+                setItemEdit({});
+            }
     
             setAvailable(available - price); 
             setItems([...items, newItem]);  
-            setValidation(false); 
-            setItem('');
-            setPrice(0); 
-            setCategory(""); 
+            clearFields(); 
             setTimeout(() => { setModal(false); }, 1000);
             return;
         } 
         
+    }
+
+    const clearFields = () => {
+        setValidation(false); 
+        setItem('');
+        setPrice(0); 
+        setCategory(""); 
     }
 
     const generateDate = () => {
@@ -61,13 +75,6 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
         }
 
         return date.getDate() + formatDate; 
-    }
-
-    const generateId = () =>{
-        const firstPart = Date.now().toString(); 
-        const secondPart = Math.random().toString(); 
-
-        return firstPart.substr(5, firstPart.length) + secondPart.substr(5, 7); 
     }
 
     return(
