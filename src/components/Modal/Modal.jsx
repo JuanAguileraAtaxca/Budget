@@ -9,15 +9,15 @@ import style from './Modal.module.css';
 
 const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemEdit, setItemEdit}) => {
 
-    const [item, setItem] = useState(''); 
+    const [item, setItem] = useState(""); 
     const [price, setPrice] = useState(0);
-    const [category, setCategory] = useState('');  
+    const [category, setCategory] = useState("");  
     const [validation, setValidation] = useState(false); 
-
+    
     useEffect(() => {
-        setItem(itemEdit.name); 
-        setPrice(itemEdit.priceItem); 
-        setCategory(itemEdit.categoryItem); 
+        setItem(itemEdit.name ?? ""); 
+        setPrice(itemEdit.priceItem ?? 0); 
+        setCategory(itemEdit.categoryItem ?? ""); 
     }, [itemEdit]); 
 
     const hadleModal = (e) =>{
@@ -25,7 +25,6 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
 
         if([item, price, category].includes('') || price <= 0){
             setValidation(true);
-
             setTimeout(() => {
                 setValidation(false);
             }, 2000);
@@ -40,29 +39,30 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
                 date: generateDate()
             }
 
-            if(JSON.stringify(itemEdit) === '{}'){
-                newItem.id = generateId(); 
-            } else {
-                const newItems = items.filter(i => i.id !== itemEdit.id); 
+            if(Object.keys(itemEdit).length > 0){
+                const newItems = items.filter(itemIterator => itemIterator.id !== itemEdit.id);
+                setAvailable(available + itemEdit.priceItem - price); 
                 newItem.id = itemEdit.id; 
-                setItems([...newItems]); 
-                setItemEdit({});
+                setItems([newItem, ...newItems]); 
+                clearFields(); 
+                return; 
             }
-    
+
+            newItem.id = generateId(); 
             setAvailable(available - price); 
             setItems([...items, newItem]);  
             clearFields(); 
-            setTimeout(() => { setModal(false); }, 1000);
             return;
         } 
         
     }
 
     const clearFields = () => {
-        setValidation(false); 
+        setTimeout(() => { setModal(false); }, 1000);
         setItem('');
         setPrice(0); 
-        setCategory(""); 
+        setCategory(''); 
+        setItemEdit({}); 
     }
 
     const generateDate = () => {
@@ -77,9 +77,14 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
         return date.getDate() + formatDate; 
     }
 
+    const close = () => {
+        setModal(!modal); 
+        setItemEdit({});
+    }
+
     return(
         <div className={style.Modal + ' center'}>
-            <button onClick={() => setModal(!modal)} className={style.ModalExit + ' center'}>
+            <button onClick={() => close()} className={style.ModalExit + ' center'}>
                 <FaTimesCircle />
             </button>
 

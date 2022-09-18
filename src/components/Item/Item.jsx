@@ -10,7 +10,16 @@ import 'react-swipeable-list/dist/styles.css'
 import {format} from '../helpers'; 
 import style from './Item.module.css'; 
 
-const Item = ({items, setItems, modal, setModal, property, available, setAvailable, setItemEdit}) => {
+const Item = ({
+    items, 
+    setItems, 
+    modal, 
+    setModal, 
+    property, 
+    available, 
+    setAvailable, 
+    setItemEdit
+}) => {
 
     const {name, date, priceItem, categoryItem} = property; 
 
