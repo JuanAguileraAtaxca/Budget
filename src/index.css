@@ -1,5 +1,5 @@
 :root{
-    --morado-header: #7D3C98; 
+    --morado-header: #2471A3 ; 
     --gris-input: #EBEBEB; 
     --gris-focus: #F8F8F8; 
     --message-error: #DA1818; 
@@ -26,6 +26,10 @@ body{
 
 .m-c{
     margin: auto; 
+}
+
+.mt-60{
+    margin-top: 60px; 
 }
 
 .mt-100{

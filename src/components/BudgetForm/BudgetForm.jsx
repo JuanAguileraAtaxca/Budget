@@ -1,6 +1,6 @@
-import style from './BudgetForm.module.css'; 
-import MessageError from '../MessageError/MessageError'; 
 import {useState} from 'react';
+import MessageError from '../MessageError/MessageError'; 
+import style from './BudgetForm.module.css'; 
 
 const BudgetForm = ({setBudget}) => {
     const [validation, setValidation] = useState(false); 
@@ -13,7 +13,7 @@ const BudgetForm = ({setBudget}) => {
 
             setTimeout(() => { 
                 setValidation(false); 
-            }, 3000);
+            }, 2000);
             return; 
         }
         setValidation(false);

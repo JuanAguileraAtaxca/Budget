@@ -4,9 +4,6 @@ import { FaTimesCircle } from "react-icons/fa";
 import {generateId} from '../helpers'; 
 import style from './Modal.module.css'; 
 
-
-
-
 const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemEdit, setItemEdit}) => {
 
     const [item, setItem] = useState(""); 
@@ -31,19 +28,19 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
             return; 
         }
 
+        addElements();         
+        
+    }
+
+    const addElements = () => {
         if(available >= price){
-            let newItem = {
-                name: item,
-                priceItem: Number(price), 
-                categoryItem: category,
-                date: generateDate()
-            }
+            let newItem = {name: item, priceItem: Number(price), categoryItem: category, date: generateDate()}
 
             if(Object.keys(itemEdit).length > 0){
-                const newItems = items.filter(itemIterator => itemIterator.id !== itemEdit.id);
                 setAvailable(available + itemEdit.priceItem - price); 
-                newItem.id = itemEdit.id; 
-                setItems([newItem, ...newItems]); 
+                newItem.id = itemEdit.id;
+                const newItems = items.map(itemIterator => itemIterator.id === itemEdit.id ? newItem : itemIterator);
+                setItems(newItems); 
                 clearFields(); 
                 return; 
             }
@@ -54,14 +51,13 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
             clearFields(); 
             return;
         } 
-        
     }
 
     const clearFields = () => {
-        setTimeout(() => { setModal(false); }, 1000);
         setItem('');
         setPrice(0); 
         setCategory(''); 
+        setTimeout(() => { setModal(false); }, 1000);
         setItemEdit({}); 
     }
 
@@ -89,7 +85,7 @@ const Modal = ({items, setItems, modal, setModal, setAvailable, available, itemE
             </button>
 
             <form className={style.ModalForm} onSubmit={hadleModal}>
-                <h2 className={style.ModalTitle}> New Item </h2>
+                <h2 className={style.ModalTitle}> {JSON.stringify(itemEdit) === '{}' ? 'New item' : 'Edit item'} </h2>
                 {validation && <MessageError message={price < 0 ? "Price negative is invalid" : "Empty fields!"}/>}
 
                 <div>

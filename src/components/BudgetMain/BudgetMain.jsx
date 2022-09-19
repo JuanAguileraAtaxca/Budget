@@ -1,16 +1,28 @@
-import {useState} from 'react'; 
+import {useState, useEffect} from 'react'; 
 import AddElement from '../AddElement/AddElement';
 import Modal from '../Modal/Modal'; 
 import Item from '../Item/Item';
 import {format} from '../helpers'; 
+import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'; 
+import 'react-circular-progressbar/dist/styles.css'; 
 import style from './BudgetMain.module.css'; 
 
 const BudgetMain = ({budget, setBudget}) => {
 
     const [modal, setModal] = useState(false);
+    const [percentage, setPercentage] = useState(0); 
     const [available, setAvailable] = useState(budget); 
     const [items, setItems] = useState([]); 
     const [itemEdit, setItemEdit] = useState({}); 
+
+    const reset = () =>{
+        setBudget(0); 
+    }
+
+    useEffect(() => {
+        let updatePercentage = 100 - ((100 * available) / budget);
+        setPercentage(Number(updatePercentage.toString().substring(0, 5)));
+    }, [available]);
 
     return(
         <>
@@ -25,15 +37,28 @@ const BudgetMain = ({budget, setBudget}) => {
                             setItemEdit = {setItemEdit}
                         /> 
             }
-            <div className={style.BudgetMainContainer + " m-c mt-100 shadow"}>
+            <div className={style.BudgetMainContainer + " m-c mt-60 shadow"}>
                 <div className='center'>
-                    <div className={style.graphTest}></div>
+                    <div style={{width: 180, height: 180}}>
+                        <CircularProgressbar
+                            value={percentage}
+                            text={`${percentage}%`}
+                            styles={buildStyles({
+                                // font size
+                                textSize: '20px', 
+                                // colors
+                                pathColor: '#3498DB',
+                                trailColor: '#d6d6d6',
+                                textColor: '#3498DB'
+                            })}
+                        />
+                    </div>
                 </div>
                 <div> 
                     <p className={style.BudgetMainText}> Presupuesto: <span className={style.BudgetMainTextValue}> {format(budget)} </span></p>
                     <p className={style.BudgetMainText}> Saldo disponible: <span className={style.BudgetMainTextValue}> {format(available)} </span></p>
                     <p className={style.BudgetMainText}> Gastos: <span className={style.BudgetMainTextValue}> {format(budget - available)}</span></p>
-                    <button className={style.BudgetMainButton} onClick={() => setBudget(0)}>
+                    <button className={style.BudgetMainButton} onClick={() => reset()}>
                         Reset budget
                     </button>
                 </div>

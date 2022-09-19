@@ -42,12 +42,12 @@
     padding: 9px;
     border-radius: 10px; 
     border: none; 
-    background-color: var(--color-button);  
+    background-color: var(--blue-button);  
     color: white; 
     font-weight: 700;
     text-transform: uppercase; 
 }
 
 .BudgetFormSubmit:hover{
-    background-color: var(--color-hover);
+    background-color: var(--blue-button-hover);
 }

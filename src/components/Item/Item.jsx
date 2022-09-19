@@ -21,34 +21,34 @@ const Item = ({
     setItemEdit
 }) => {
 
-    const {name, date, priceItem, categoryItem} = property; 
+    const {id, name, date, priceItem, categoryItem} = property; 
 
     const imgItem = (category) => {
         return "/img/" + category + ".png"; 
     }
 
-    const deleteElement = (object) => {
-        setAvailable(available + object.priceItem); 
-        const newItems = items.filter(itemIterator => itemIterator.id !== object.id);
-        setItems([...newItems]); 
+    const deleteElement = () => {
+        setAvailable(available + priceItem); 
+        const newItems = items.filter(itemIterator => itemIterator.id !== id);
+        setItems(newItems); 
     }
 
-    const editElement = (object) => {
+    const editElement = () => {
         setModal(!modal); 
-        setItemEdit(object); 
+        setItemEdit(property); 
     }
 
-    const leadingAction = (object) => (
+    const leadingAction = () => (
         <LeadingActions>
-            <SwipeAction onClick={() => editElement(object)}>
+            <SwipeAction onClick={() => editElement()}>
                 Edit
             </SwipeAction>
         </LeadingActions>
     ); 
 
-    const trailingAction = (object) => (
+    const trailingAction = () => (
         <TrailingActions>
-            <SwipeAction onClick={() => deleteElement(object)}>
+            <SwipeAction onClick={() => deleteElement()}>
                 Delete
             </SwipeAction>
         </TrailingActions>
