@@ -37,9 +37,9 @@ const BudgetMain = ({budget, setBudget}) => {
                             setItemEdit = {setItemEdit}
                         /> 
             }
-            <div className={style.BudgetMainContainer + " m-c mt-60 shadow"}>
+            <div className={style.BudgetMainContainer + " m-c mt-60"}>
                 <div className='center'>
-                    <div style={{width: 180, height: 180}}>
+                    <div className={style.BudgetMainProgressbar}>
                         <CircularProgressbar
                             value={percentage}
                             text={`${percentage}%`}
@@ -56,13 +56,12 @@ const BudgetMain = ({budget, setBudget}) => {
                 </div>
                 <div> 
                     <p className={style.BudgetMainText}> Presupuesto: <span className={style.BudgetMainTextValue}> {format(budget)} </span></p>
-                    <p className={style.BudgetMainText}> Saldo disponible: <span className={style.BudgetMainTextValue}> {format(available)} </span></p>
+                    <p className={style.BudgetMainText}> Disponible: <span className={style.BudgetMainTextValue}> {format(available)} </span></p>
                     <p className={style.BudgetMainText}> Gastos: <span className={style.BudgetMainTextValue}> {format(budget - available)}</span></p>
                     <button className={style.BudgetMainButton} onClick={() => reset()}>
                         Reset budget
                     </button>
                 </div>
-                
             </div>
             <div className="m-c mt-20 mb-20">
                 {items.length > 0 ? 

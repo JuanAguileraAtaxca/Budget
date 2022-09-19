@@ -12,10 +12,11 @@
 
 .ModalForm{
     width: 80%; 
-    padding: 30px 30px;
+    padding: 25px;
     background-color: white;
     border-radius: 10px; 
 }
+
 
 .ModalForm label{
     font-weight: 700;
@@ -31,6 +32,7 @@
 @media(min-width: 720px){
     .ModalForm{
         max-width: 700px; 
+        padding: 40px; 
     }
 
     .ModalTitle{

@@ -58,7 +58,7 @@ const Item = ({
     return(
         <SwipeableList>
             <SwipeableListItem leadingActions={leadingAction(property)} trailingActions={trailingAction(property)}>
-                <div className={style.ItemCard + " shadow mt-20 mb-20"}>
+                <div className={style.ItemCard + " mt-20 mb-20"}>
                     <div className={style.ItemCardSub + ' center'}>
                         <img className={style.ItemCardImg} src={imgItem(categoryItem)} />
                         <div>

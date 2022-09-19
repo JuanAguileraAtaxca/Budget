@@ -1,4 +1,5 @@
 :root{
+    --background: #F8F9F9; 
     --morado-header: #2471A3 ; 
     --gris-input: #EBEBEB; 
     --gris-focus: #F8F8F8; 
@@ -6,7 +7,8 @@
     --red-button: #CC0000; 
     --red-button-hover: #FF0800; 
     --blue-button: #0249CB;
-    --blue-button-hover: #0A5AEE;  
+    --blue-button-hover: #0A5AEE;
+    --white: #FFF;   
     --width: 700px; 
 } 
 
@@ -22,6 +24,8 @@ body{
     padding: 0; 
     font-family: 'Roboto', sans-serif;
     font-size: 16px; 
+
+    background-color: #EAECEE; 
 }
 
 .m-c{

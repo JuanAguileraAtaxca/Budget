@@ -1,8 +1,9 @@
 
 .BudgetMainContainer{
     width: 80%; 
-    padding: 20px; 
-    border-radius: 8px; 
+    padding: 30px 40px; 
+    border-radius: 9px; 
+    background-color: var(--white);
 }
 
 @media(min-width: 720px){
@@ -12,6 +13,18 @@
         grid-template-columns: repeat(2, 1fr); 
         gap: 10px; 
         padding: 50px 40px; 
+    }
+}
+
+.BudgetMainProgressbar{
+    width: 150px; 
+    height: 150px;
+}
+
+@media(min-width: 600px){
+    .BudgetMainProgressbar{
+        width: 180px; 
+        height: 180px; 
     }
 }
 
@@ -31,17 +44,16 @@
     color: rgb(0,0,0,0.5);
 }
 
-.graphTest{
-    width: 150px; 
-    height: 150px;
-    background-color: #6FA1FB;
-    border-radius: 50%; 
-}
-
 .BudgetMainText{
     font-weight: 700; 
     color: #012E67; 
-    font-size: 20px; 
+    font-size: 15px; 
+}
+
+@media(min-width: 600px){
+    .BudgetMainText{
+        font-size: 20px; 
+    }
 }
 
 .BudgetMainTextValue{

@@ -2,9 +2,10 @@
 .ItemCard{
     width: 100%;
     padding: 20px; 
-    border-radius: 9px; 
+    border-radius: 10px; 
     display: flex; 
     justify-content: space-between; 
+    background-color: var(--white);
 }
 
 @media(min-width: 720px){
