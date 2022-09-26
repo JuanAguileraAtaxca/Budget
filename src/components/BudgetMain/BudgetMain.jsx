@@ -54,6 +54,8 @@ const BudgetMain = ({budget, items, setItems, setBudget}) => {
                             itemEdit={itemEdit}
                             setItemEdit = {setItemEdit}
                             available = {available}
+                            filterExpenses={filterExpenses}
+                            setFilterExpenses={setFilterExpenses}
                         /> 
             }
             <div className={style.BudgetMainContainer + " m-c mt-60"}>
@@ -74,9 +76,9 @@ const BudgetMain = ({budget, items, setItems, setBudget}) => {
                     </div>
                 </div>
                 <div> 
-                    <p className={style.BudgetMainText}> Presupuesto: <span className={style.BudgetMainTextValue}> {format(budget)} </span></p>
-                    <p className={style.BudgetMainText}> Disponible: <span className={style.BudgetMainTextValue}> {format(available)} </span></p>
-                    <p className={style.BudgetMainText}> Gastos: <span className={style.BudgetMainTextValue}> {format(expense)}</span></p>
+                    <p className={style.BudgetMainText}> Budget: <span className={style.BudgetMainTextValue}> {format(budget)} </span></p>
+                    <p className={style.BudgetMainText}> Available: <span className={style.BudgetMainTextValue}> {format(available)} </span></p>
+                    <p className={style.BudgetMainText}> Expenses: <span className={style.BudgetMainTextValue}> {format(expense)}</span></p>
                     <button className={style.BudgetMainButton} onClick={() => resetApp()}>
                         Reset budget
                     </button>
@@ -95,12 +97,13 @@ const BudgetMain = ({budget, items, setItems, setBudget}) => {
                                             <Item 
                                                 items={items} 
                                                 setItems={setItems} 
+                                                filterExpenses={filterExpenses}
+                                                setFilterExpenses={setFilterExpenses}
+                                                filterExpense={filterExpense}
                                                 modal={modal} 
                                                 setModal={setModal} 
                                                 key={item.id} 
                                                 property={item}
-                                                available={available}
-                                                setAvailable={setAvailable}
                                                 setItemEdit={setItemEdit}
                                             />)
                             }
@@ -117,8 +120,6 @@ const BudgetMain = ({budget, items, setItems, setBudget}) => {
                                                 setModal={setModal} 
                                                 key={item.id} 
                                                 property={item}
-                                                available={available}
-                                                setAvailable={setAvailable}
                                                 setItemEdit={setItemEdit}
                                         />)
                                 }

@@ -12,12 +12,13 @@ import style from './Item.module.css';
 
 const Item = ({
     items, 
-    setItems, 
+    setItems,
+    filterExpenses,
+    setFilterExpenses,
+    filterExpense, 
     modal, 
     setModal, 
     property, 
-    available, 
-    setAvailable, 
     setItemEdit
 }) => {
 
@@ -28,9 +29,12 @@ const Item = ({
     }
 
     const deleteElement = () => {
-        setAvailable(available + priceItem); 
         const newItems = items.filter(itemIterator => itemIterator.id !== id);
-        setItems(newItems); 
+        setItems(newItems);
+        if(filterExpense){
+            setFilterExpenses(filterExpenses.filter(itemIterator => itemIterator.id !== id)); 
+        }
+        
     }
 
     const editElement = () => {

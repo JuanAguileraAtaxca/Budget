@@ -4,7 +4,17 @@ import { FaTimesCircle } from "react-icons/fa";
 import {generateId} from '../helpers'; 
 import style from './Modal.module.css'; 
 
-const Modal = ({items, setItems, modal, setModal, itemEdit, setItemEdit, available}) => {
+const Modal = ({
+    items, 
+    setItems, 
+    modal, 
+    setModal, 
+    itemEdit, 
+    setItemEdit, 
+    available, 
+    filterExpenses, 
+    setFilterExpenses}
+    ) => {
 
     const [item, setItem] = useState(""); 
     const [price, setPrice] = useState(0);
@@ -40,6 +50,9 @@ const Modal = ({items, setItems, modal, setModal, itemEdit, setItemEdit, availab
                 newItem.id = itemEdit.id;
                 const newItems = items.map(itemIterator => itemIterator.id === itemEdit.id ? newItem : itemIterator);
                 setItems(newItems); 
+                if(filterExpenses.length){
+                    setFilterExpenses(filterExpenses.map(itemIterator => itemIterator.id === itemEdit.id ? newItem : itemIterator));
+                }
                 clearFields(); 
                 return; 
             }
