@@ -2,27 +2,47 @@ import {useState, useEffect} from 'react';
 import AddElement from '../AddElement/AddElement';
 import Modal from '../Modal/Modal'; 
 import Item from '../Item/Item';
+import FilterExpense from '../FilterExpense/FilterExpense';
 import {format} from '../helpers'; 
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar'; 
 import 'react-circular-progressbar/dist/styles.css'; 
 import style from './BudgetMain.module.css'; 
 
-const BudgetMain = ({budget, setBudget}) => {
+const BudgetMain = ({budget, items, setItems, setBudget}) => {
 
     const [modal, setModal] = useState(false);
     const [percentage, setPercentage] = useState(0); 
-    const [available, setAvailable] = useState(budget); 
-    const [items, setItems] = useState([]); 
+    const [expense, setExpense] = useState(0); 
+    const [available, setAvailable] = useState(0);
     const [itemEdit, setItemEdit] = useState({}); 
-
-    const reset = () =>{
-        setBudget(0); 
-    }
+    const [filterExpense, setFilterExpense] = useState(""); 
+    const [filterExpenses, setFilterExpenses] = useState([]);
 
     useEffect(() => {
-        let updatePercentage = 100 - ((100 * available) / budget);
-        setPercentage(Number(updatePercentage.toString().substring(0, 5)));
-    }, [available]);
+        const newExpense = items.reduce((count, item) => count += item.priceItem, 0); 
+        setExpense(newExpense);
+    }, [items]);
+
+    useEffect(() =>{
+        setAvailable(budget - expense);
+        const newPercentage = ((expense * 100) / budget).toFixed(2); 
+
+        setTimeout(() => {
+            setPercentage(newPercentage);
+        }, 1500); 
+    }, [expense]); 
+
+    useEffect(() => {
+        const newFilters = items.filter(newFilter => filterExpense === newFilter.categoryItem); 
+        setFilterExpenses(newFilters);
+    }, [filterExpense]);
+
+    const resetApp = () => {
+        if(confirm("Do you wanna delete this expenses?")){
+            setItems([]);
+            setBudget(0); 
+        }
+    }
 
     return(
         <>
@@ -31,10 +51,9 @@ const BudgetMain = ({budget, setBudget}) => {
                             setItems={setItems} 
                             modal={modal} 
                             setModal={setModal} 
-                            setAvailable={setAvailable} 
-                            available={available}
                             itemEdit={itemEdit}
                             setItemEdit = {setItemEdit}
+                            available = {available}
                         /> 
             }
             <div className={style.BudgetMainContainer + " m-c mt-60"}>
@@ -57,18 +76,22 @@ const BudgetMain = ({budget, setBudget}) => {
                 <div> 
                     <p className={style.BudgetMainText}> Presupuesto: <span className={style.BudgetMainTextValue}> {format(budget)} </span></p>
                     <p className={style.BudgetMainText}> Disponible: <span className={style.BudgetMainTextValue}> {format(available)} </span></p>
-                    <p className={style.BudgetMainText}> Gastos: <span className={style.BudgetMainTextValue}> {format(budget - available)}</span></p>
-                    <button className={style.BudgetMainButton} onClick={() => reset()}>
+                    <p className={style.BudgetMainText}> Gastos: <span className={style.BudgetMainTextValue}> {format(expense)}</span></p>
+                    <button className={style.BudgetMainButton} onClick={() => resetApp()}>
                         Reset budget
                     </button>
                 </div>
             </div>
+            
+            <FilterExpense filterExpense={filterExpense} setFilterExpense={setFilterExpense}/>
+
             <div className="m-c mt-20 mb-20">
-                {items.length > 0 ? 
-                    <>
-                        <h2 className={style.BudgetEmpty}> Expenses </h2>
+                {
+                    filterExpense ? 
+                    (<>
+                        <h2 className={style.BudgetEmpty}> {filterExpenses.length ? 'Expenses':'There is not expense'} </h2>
                         <div className={style.BudgetContainerCards + " m-c"}>
-                            {items.map(item => 
+                            {filterExpenses.map(item => 
                                             <Item 
                                                 items={items} 
                                                 setItems={setItems} 
@@ -79,15 +102,31 @@ const BudgetMain = ({budget, setBudget}) => {
                                                 available={available}
                                                 setAvailable={setAvailable}
                                                 setItemEdit={setItemEdit}
-                                            />
-                                        )
+                                            />)
                             }
                         </div>                        
-                    </>
+                    </>) : 
+                        (<>
+                            <h2 className={style.BudgetEmpty}> {items.length ? 'Expenses':'There is not expenses'} </h2>
+                            <div className={style.BudgetContainerCards + " m-c"}>
+                                {items.map(item => 
+                                            <Item 
+                                                items={items} 
+                                                setItems={setItems} 
+                                                modal={modal} 
+                                                setModal={setModal} 
+                                                key={item.id} 
+                                                property={item}
+                                                available={available}
+                                                setAvailable={setAvailable}
+                                                setItemEdit={setItemEdit}
+                                        />)
+                                }
+                            </div>                        
+                        </>)
                     
-                : 
-                    <h2 className={style.BudgetEmpty}> there's not items</h2>
                 }
+                
                 
                 
             </div>

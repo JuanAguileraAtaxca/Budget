@@ -1,0 +1,31 @@
+
+.FilterContainer{
+    width: 80%;
+    background-color: var(--white);
+    border-radius: 8px; 
+    padding: 20px; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+@media(min-width: 890px){
+    .FilterContainer{
+        width: var(--width);
+        justify-content: space-between;
+    }
+}
+
+.FilterSelect{
+    width: 100%;
+}
+
+@media(min-width: 890px){
+    .FilterSelect{
+        width: 400px; 
+    }
+}
+
+.FilterTitle{
+    color: var(--text);
+}

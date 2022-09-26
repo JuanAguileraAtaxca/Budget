@@ -6,17 +6,24 @@ import './App.css'
 
 function App() {
   const [budget, setBudget] = useState(Number(localStorage.getItem('budget') ?? 0)); 
+  const [items, setItems] = useState(
+    localStorage.getItem("items") ? JSON.parse(localStorage.getItem("items")) : []
+  ); 
 
   useEffect(() => {
-    localStorage.setItem('budget', budget); 
+    localStorage.setItem('budget', budget ?? 0); 
   }, [budget]); 
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items) ?? []); 
+  }, [items]);
 
   return (
     <div className="App">
       <Header /> 
 
       {budget > 0 ? 
-        <BudgetMain budget={budget} setBudget={setBudget} /> : 
+        <BudgetMain budget={budget} items={items} setItems={setItems} setBudget={setBudget} /> : 
         <BudgetForm budget={budget} setBudget={setBudget}/> 
       }
 

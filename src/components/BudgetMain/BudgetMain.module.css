@@ -46,7 +46,7 @@
 
 .BudgetMainText{
     font-weight: 700; 
-    color: #012E67; 
+    color: var(--text); 
     font-size: 15px; 
 }
 
